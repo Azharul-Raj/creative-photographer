@@ -1,5 +1,8 @@
 import React from 'react';
 import pie from '../../../assets/pie.svg';
+import Member1 from '../../../assets/Abdullah.jpg';
+import Member2 from '../../../assets/Jayed Bin.jpg';
+import Member3 from '../../../assets/Osman.jpg';
 
 const BottomSection = () => {
     return (
@@ -52,7 +55,82 @@ const BottomSection = () => {
     </div>
   </div>
 </div>
-                                    
+            {/* team section  */}
+            
+    <div className="py-20">
+  <div className="container mx-auto px-6 text-center md:px-12">
+    <div className="mb-16">
+      <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 dark:text-white md:text-4xl">
+        Meet My Team
+      </h2>
+      <p className="text-gray-600 dark:text-gray-300 lg:mx-auto lg:w-8/12">
+        It's really a good luck to get such a great team. They are really cool in every part.They made the work so easy and enjoyable that I don't ever feel like i'm working.
+      </p>
+    </div>
+    <div className="grid gap-28 py-20 md:grid-cols-3 md:gap-12">
+      <div className="group space-y-8 border-t-4 border-gray-100 dark:border-gray-800">
+        <div className="mx-auto -mt-16 h-32 w-32 rotate-45 overflow-hidden rounded-[2rem]">
+          <img
+            className="mx-auto h-full w-full -rotate-45 scale-125 object-cover transition duration-300 group-hover:scale-[1.4]"
+            src={Member1}
+            alt="boy"
+            loading="lazy"
+            width="640"
+            height="805"
+          />
+        </div>
+        <div className="space-y-4 text-center">
+          <div>
+            <h4 className="text-2xl text-gray-700 dark:text-white">Abdullah Bin Jayed</h4>
+            <span className="block text-sm text-gray-500">Assistant</span>
+          </div>
+          <a href="#" className="mx-auto block w-max text-primary">View Bio</a>
+        </div>
+      </div>
+
+      <div className="group space-y-8 border-t-4 border-gray-100 dark:border-gray-800">
+        <div className="mx-auto -mt-16 h-32 w-32 rotate-45 overflow-hidden rounded-[2rem]">
+          <img
+            className="mx-auto h-full w-full -rotate-45 scale-125 object-cover transition duration-300 group-hover:scale-[1.4]"
+            src={Member2}
+            alt="boy"
+            loading="lazy"
+            width="1000"
+            height="667"
+          />
+        </div>
+        <div className="space-y-4 text-center">
+          <div>
+            <h4 className="text-2xl text-gray-700 dark:text-white">Osman Ibn Affan</h4>
+            <span className="block text-sm text-gray-500">Graphics Designer</span>
+          </div>
+          <a href="#" className="mx-auto block w-max text-primary">View Bio</a>
+        </div>
+      </div>
+
+      <div className="group space-y-8 border-t-4 border-gray-100 dark:border-gray-800">
+        <div className="mx-auto -mt-16 h-32 w-32 rotate-45 overflow-hidden rounded-[2rem]">
+          <img
+            className="mx-auto h-full w-full -rotate-45 scale-125 object-cover transition duration-300 group-hover:scale-[1.4]"
+            src={Member3}
+            alt="man"
+            loading="lazy"
+            width="1000"
+            height="667"
+          />
+        </div>
+        <div className="space-y-4 text-center">
+          <div>
+            <h4 className="text-2xl text-gray-700 dark:text-white">Omar Ibn Rahim</h4>
+            <span className="block text-sm text-gray-500">Chief Technical Officer</span>
+          </div>
+          <a href="#" className="mx-auto block w-max text-primary">View Bio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         </>
     );
 };
