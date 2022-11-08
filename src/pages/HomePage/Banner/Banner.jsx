@@ -1,5 +1,5 @@
 import React from 'react';
-import camera from '../../../../assets/camera.png';
+import camera from '../../../assets/camera.png';
 
 const Banner = () => {
     return (

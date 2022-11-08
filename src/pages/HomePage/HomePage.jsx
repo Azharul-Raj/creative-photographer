@@ -1,8 +1,7 @@
 import React from 'react';
 import BottomSection from './BottomSection/BottomSection';
 import Services from './Services/Services';
-import Banner from './Sliders/Banner/Banner';
-import Sliders from './Sliders/Sliders';
+import Banner from './Banner/Banner'
 
 const HomePage = () => {
     return (

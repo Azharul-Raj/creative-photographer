@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllServices from "../pages/AllServices/AllServices";
 import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
@@ -20,6 +21,10 @@ export const route = createBrowserRouter([
             {
                 path: 'register',
                 element:<Register/>
+            },
+            {
+                path: '/services',
+                element:<AllServices/>
             }
         ]
     }
