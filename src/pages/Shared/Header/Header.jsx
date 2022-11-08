@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/logocam.png'
+import { authContext } from '../../../contexts/AuthProvider';
+import { FaUpload } from 'react-icons/fa';
+
 
 const Header = () => {
+  const { user, logOut } = useContext(authContext);
+  const handleLogOut = () => {
+    logOut();
+  }
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -13,8 +21,9 @@ const Header = () => {
             aria-label="Company"
             title="Company"
             className="inline-flex items-center"
-          >
-            <svg
+            >
+              <img className='h-7 w-7' src={logo} alt="" />
+            {/* <svg
               className="w-8 text-teal-accent-400"
               viewBox="0 0 24 24"
               strokeLinejoin="round"
@@ -28,9 +37,9 @@ const Header = () => {
               <rect x="3" y="17" width="7" height="6" />
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
-            </svg>
+            </svg> */}
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-              Company
+              C.P.graph
             </span>
           </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -38,7 +47,7 @@ const Header = () => {
               <Link
                 to="/services"
                 aria-label="Our product"
-                title="Our product"
+                title="Services"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Services
@@ -46,46 +55,60 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/blog"
                 aria-label="Our product"
-                title="Our product"
+                title="Blog"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Features
+                Blog
               </Link>
             </li>
-            <li>
+            {user&&<li>
               <Link
                 to="/"
                 aria-label="Product pricing"
-                title="Product pricing"
+                title="My reviews"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Pricing
+                My Reviews
               </Link>
-            </li>
-            <li>
-              <Link
-                to="/"
-                aria-label="About us"
-                title="About us"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                About us
-              </Link>
-            </li>
+            </li>}
           </ul>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <ul className="flex items-center hidden space-x-8 lg:flex">
+              {user?<>
             <li>
               <Link
-                to="/"
+                to="/addservice"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
-                title="Sign up"
+                title="Add Services"
               >
-                Sign up
+               <FaUpload/> Add Service
               </Link>
-            </li>
+              </li>
+            <li>
+              <Link
+                    to="/"
+                    onClick={handleLogOut}
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Log Out"
+              >
+                LogOut
+              </Link>
+                </li>
+              </> :
+                <li>
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Sign up"
+                  title="Log In"
+                >
+                  Log In
+                </Link>
+                  </li>
+                }
           </ul>
           <div className="lg:hidden">
             <button
@@ -119,8 +142,9 @@ const Header = () => {
                         aria-label="Company"
                         title="Company"
                         className="inline-flex items-center"
-                      >
-                        <svg
+                        >
+                          <img className='h-7 w-7' src={logo} alt="" />
+                        {/* <svg
                           className="w-8 text-deep-purple-accent-400"
                           viewBox="0 0 24 24"
                           strokeLinejoin="round"
@@ -134,9 +158,9 @@ const Header = () => {
                           <rect x="3" y="17" width="7" height="6" />
                           <rect x="14" y="1" width="7" height="6" />
                           <rect x="14" y="11" width="7" height="12" />
-                        </svg>
+                        </svg> */}
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Company
+                        C.P.graph
                         </span>
                       </Link>
                     </div>
@@ -160,54 +184,69 @@ const Header = () => {
                     <ul className="space-y-4">
                       <li>
                         <Link
-                          to="/"
+                          to="/services"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Product
+                          Services
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="/"
+                          to="/blog"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Features
+                          Blog
                         </Link>
                       </li>
-                      <li>
+                      {user&&<li>
                         <Link
                           to="/"
                           aria-label="Product pricing"
-                          title="Product pricing"
+                          title="My Reviews"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Pricing
+                          My Reviews
                         </Link>
-                      </li>
-                      <li>
+                      </li>}
+                        <div className="">
+                          {user?<>
+                          <li>
                         <Link
                           to="/"
-                          aria-label="About us"
-                          title="About us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          About us
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                           aria-label="Sign up"
                           title="Sign up"
                         >
-                          Sign up
+                          <FaUpload/> Add Service
                         </Link>
                       </li>
+                          <li className='my-5'>
+                        <Link
+                          to="/"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Log Out
+                        </Link>
+                      </li>
+                          </> :
+                            <li>
+                            <Link
+                              to="/"
+                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Sign up"
+                              title="Sign up"
+                            >
+                              Log In
+                            </Link>
+                          </li>
+                          }
+                      </div>
                     </ul>
                   </nav>
                 </div>

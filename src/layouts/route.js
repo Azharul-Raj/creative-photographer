@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AllServices from "../pages/AllServices/AllServices";
+import Details from "../pages/Details/Details";
 import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
@@ -25,6 +26,10 @@ export const route = createBrowserRouter([
             {
                 path: '/services',
                 element:<AllServices/>
+            },
+            {
+                path: "/service/:id",
+                element:<Details/> 
             }
         ]
     }

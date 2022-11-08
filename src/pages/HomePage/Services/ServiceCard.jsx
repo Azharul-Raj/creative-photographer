@@ -4,7 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceCard = ({ service }) => {
-    const { title,img,desc,price,rating } = service;
+    const { _id,title,img,desc,price,rating } = service;
     return (
         
 <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -24,7 +24,7 @@ const ServiceCard = ({ service }) => {
                     <p>Price : { price}$</p>
                     <p>Rating : { rating}</p>
                 </div>
-                <Link>
+                <Link to={`/service/${_id}`}>
                     <button className='w-full items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'> View Details</button>
                 </Link>
         {/* <Link href="#" className="inline-flex w-full items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthProvider';
 
+
 const Protected = ({ children }) => {
     const { user, loading } = useContext(authContext);
     const location = useLocation();
