@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import googleLogo from "../../assets/icons8-google.svg";
+import { authContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
+  const { emailLogin, googleSignIn } = useContext(authContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    emailLogin(email, password)
+      .then(result => {
+        const profile = result.user;
+      })
+    .catch(err=>console.error(err))
+  }
+  // google signIn
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(result => {
+        const profile = result.user;
+      })
+    .catch(err=>console.log(err))
+  }
   return (
     <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
       <div className="mx-auto h-full sm:w-max">
@@ -12,7 +33,7 @@ const Login = () => {
               Login to your account
             </h3>
             <div className="mt-12 flex flex-wrap sm:grid gap-6 grid-cols-2">
-              <button className="w-full h-11 rounded-full border border-gray-300/75 bg-white px-6 transition active:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-800 dark:hover:border-gray-700">
+              <button onClick={handleGoogleSignIn} className="w-full h-11 rounded-full border border-gray-300/75 bg-white px-6 transition active:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-800 dark:hover:border-gray-700">
                 <div className="w-max mx-auto flex items-center justify-center space-x-4">
                   <img src={googleLogo} className="w-5" alt="" />
                   <span className="block w-max text-sm font-semibold tracking-wide text-cyan-700 dark:text-white">
@@ -31,7 +52,7 @@ const Login = () => {
               </Link>
             </div>
 
-            <form action="" className="mt-10 space-y-8 dark:text-white">
+            <form onClick={handleSubmit} className="mt-10 space-y-8 dark:text-white">
               <div>
                 <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 dark:before:bg-sky-800 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
                   <input
