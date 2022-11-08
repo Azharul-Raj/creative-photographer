@@ -1,20 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { authContext } from "../../contexts/AuthProvider";
+import Comments from './Comments';
 
 const Details = () => {
   const { id } = useParams();
   const { user } = useContext(authContext);
-    const [service, setService] = useState({});
-    useEffect(() => {
-        fetch(`http://localhost:3001/service/${id}`)
-            .then(res => res.json())
-        .then(data=>setService(data))
-    }, [id])
+  // all states are here
+    // const [service, setService] = useState({});
+  const [refresh,setRefresh]=useState(false)
+  const [comment, setComment] = useState('');
+  const [comments,setComments]=useState([])
+    // useEffect(() => {
+    //     fetch(`http://localhost:3001/service/${id}`)
+    //         .then(res => res.json())
+    //     .then(data=>setService(data))
+    // }, [id])
+  const service=useLoaderData()
     const { title,service_id,img,desc,price,rating} = service;
   // console.log(id);
+
+console.log(service_id);  
+  // comment data fetching function here
+  useEffect(() => {
+    fetch(`http://localhost:3001/reviews/${service_id}`)
+      .then(res => res.json())
+      .then(data => {
+        const result=data.sort((a,b)=>parseFloat(b.time)-parseFloat(a.time))
+        setComments(result)
+      })
+    .catch(err=>console.error(err))
+  },[service_id,refresh])
+  // console.log(comments);
   // handle post comment api
-  const [comment,setComment]=useState('')
   const handleComment = (e) => {
     e.preventDefault();
     const review = {
@@ -34,12 +53,16 @@ const Details = () => {
       },
       body:JSON.stringify(review)
     })
-      .then(res => res.json())
-      .then(data => console.log(data))
+    .then(res => res.json())
+    .then(data => {
+        setRefresh(!refresh)
+        toast.success('Comment posted successfully')
+      })
       .catch(err => console.error(err))
     e.target.reset();
+    
   }
-  
+
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -102,7 +125,10 @@ const Details = () => {
             </div>
 
             <div className="mt-8 lg:w-1/4 lg:mt-0 lg:px-6">
-              <div>
+              {
+                comments.map(item => <Comments key={item._id} item={ item} />)
+              }
+              {/* <div>
                 <h3 className="text-blue-500 capitalize">Design instument</h3>
 
                 <a
@@ -111,11 +137,11 @@ const Details = () => {
                 >
                   How to raise $100k+ by using blox ui kit on your design
                 </a>
-              </div>
+              </div> */}
 
-              <hr className="my-6 border-gray-200 dark:border-gray-700" />
+              {/* <hr className="my-6 border-gray-200 dark:border-gray-700" /> */}
 
-              <div>
+              {/* <div>
                 <h3 className="text-blue-500 capitalize">UI Resource</h3>
 
                 <a
@@ -124,11 +150,11 @@ const Details = () => {
                 >
                   Should you creat UI Product by using Blox?
                 </a>
-              </div>
+              </div> */}
 
-              <hr className="my-6 border-gray-200 dark:border-gray-700" />
+              {/* <hr className="my-6 border-gray-200 dark:border-gray-700" /> */}
 
-              <div>
+              {/* <div>
                 <h3 className="text-blue-500 capitalize">Premium Collection</h3>
 
                 <a
@@ -137,11 +163,11 @@ const Details = () => {
                 >
                   Top 10 Blocks you can get on Blox's collection.
                 </a>
-              </div>
+              </div> */}
 
-              <hr className="my-6 border-gray-200 dark:border-gray-700" />
+              {/* <hr className="my-6 border-gray-200 dark:border-gray-700" /> */}
 
-              <div>
+              {/* <div>
                 <h3 className="text-blue-500 capitalize">Premium kits</h3>
 
                 <a
@@ -150,7 +176,7 @@ const Details = () => {
                 >
                   Top 10 Ui kit you can get on Blox's collection.
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
