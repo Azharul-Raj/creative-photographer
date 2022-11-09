@@ -5,10 +5,10 @@ import { authContext } from '../../../contexts/AuthProvider';
 
 const Review = ({ item, dltrefresh, setDltRefresh }) => {
     const { logOut } = useContext(authContext);
-    const { _id, name, comment, photo, time } = item;
+    const { _id, name,serviceName, comment, photo, time } = item;
     // comment delete function 
     const handleDelete = () => {
-        fetch(`http://localhost:3001/reviews/${_id}`, {
+        fetch(`https://assignment-11-server-ten.vercel.app/reviews/${_id}`, {
             method: "DELETE",
             headers: {
                 authorization:`Bearer ${localStorage.getItem('token')}`
@@ -35,14 +35,16 @@ const Review = ({ item, dltrefresh, setDltRefresh }) => {
     
     return (
         <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                <p className='text-gray-500 text-semibold'>Review of { serviceName} Service</p>
         <footer className="flex justify-between items-center mb-2">
-            <div className="flex items-center">
+                <div className="flex items-center">
                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                         className="mr-2 w-6 h-6 rounded-full"
                         src={photo}
                         alt="img" />{ name}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
                         title="February 8th, 2022">{time}</time></p>
+                    
             </div>
             <button onClick={handleDelete} id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                 className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -50,7 +52,8 @@ const Review = ({ item, dltrefresh, setDltRefresh }) => {
                     Delete
                 {/* <span className="sr-only">Comment settings</span> */}
             </button>
-        </footer>
+            </footer>
+            
         <p className="text-gray-500 dark:text-gray-400">{comment.comment}</p>
         <div className="flex items-center mt-4 space-x-4">
                 <Link to={`/update/${_id}`}>

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 import googleLogo from "../../assets/icons8-google.svg";
 import { authContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
@@ -8,7 +8,7 @@ import getToken from "../../utilities/utilities";
 
 const Login = () => {
   useTitle('Login')
-  const { user,emailLogin, googleSignIn } = useContext(authContext);
+  const { emailLogin, googleSignIn } = useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
   let from = location.state?.from?.pathname || "/";
@@ -34,12 +34,10 @@ const Login = () => {
       .then(result => {
         const profile = result.user;
         getToken(profile)
-        console.log(profile);
-        console.log('login thke');
+        navigate(from,{replace:true})
       })
     .catch(err=>console.log(err))
   }
- console.log(user);
   return (
     <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
       <div className="mx-auto h-full sm:w-max">

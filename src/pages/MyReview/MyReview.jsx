@@ -10,7 +10,7 @@ const MyReview = () => {
   const [allComments, setAllComments] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/reviews?email=${user?.email}`, {
+    fetch(`https://assignment-11-server-ten.vercel.app/reviews?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`
       },

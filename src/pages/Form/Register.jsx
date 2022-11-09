@@ -34,6 +34,7 @@ const Register = () => {
       .then(result => {
         const profile = result.user;
         getToken(profile)
+        navigate('/')
       })
     .catch(err=>console.log(err))
   }

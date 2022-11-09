@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import toast from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
     useTitle('Add Service');
+    const navigate = useNavigate();
     const { logOut } = useContext(authContext);
     const handlePost = (e) => {
         e.preventDefault();
@@ -25,8 +27,7 @@ const AddService = () => {
             img:img,
             rating:rating
         }
-        // console.log(title,email,description,service_id,price,image,rating)
-        fetch('http://localhost:3001/services', {
+        fetch('https://assignment-11-server-ten.vercel.app/services', {
       method: "POST",
       headers: {
           "content-type": "application/json",
@@ -42,10 +43,11 @@ const AddService = () => {
             })
     .then(data => {
         console.log(data);
-        toast.success('service added')
+        toast.success('service added');
+        navigate('/services')
       })
       .catch(err => console.error(err))
-    // e.target.reset();
+    e.target.reset();
     }
     return (    
         <div className="m-10">

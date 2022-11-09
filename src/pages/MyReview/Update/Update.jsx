@@ -11,7 +11,7 @@ const Update = () => {
   const [updateCmnt, setUpdateCmnt] = useState("");
   const handleUpdate = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3001/reviews/${id}`, {
+    fetch(`https://assignment-11-server-ten.vercel.app/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

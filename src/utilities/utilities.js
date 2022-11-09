@@ -2,7 +2,7 @@ const getToken = (profile) => {
     const user = {
         email: profile.email
     }
-    fetch('http://localhost:3001/jwt', {
+    fetch('https://assignment-11-server-ten.vercel.app/jwt', {
         method: "POST",
         headers: {
             "content-type":"application/json"

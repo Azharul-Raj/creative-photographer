@@ -1,22 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { authContext } from "../../contexts/AuthProvider";
 import Comments from './Comments';
 
 const Details = () => {
-  const { id } = useParams();
   const { user } = useContext(authContext);
   // all states are here
-    // const [service, setService] = useState({});
   const [refresh,setRefresh]=useState(false)
   const [comment, setComment] = useState('');
   const [comments,setComments]=useState([])
-    // useEffect(() => {
-    //     fetch(`http://localhost:3001/service/${id}`)
-    //         .then(res => res.json())
-    //     .then(data=>setService(data))
-    // }, [id])
   const service=useLoaderData()
     const { title,service_id,img,desc,price,rating} = service;
   // console.log(id);
@@ -24,7 +17,7 @@ const Details = () => {
 console.log(service_id);  
   // comment data fetching function here
   useEffect(() => {
-    fetch(`http://localhost:3001/reviews/${service_id}`)
+    fetch(`https://assignment-11-server-ten.vercel.app/reviews/${service_id}`)
       .then(res => res.json())
       .then(data => {
         setComments(data)
@@ -46,7 +39,7 @@ console.log(service_id);
         comment:comment
       }
     }
-    fetch('http://localhost:3001/reviews', {
+    fetch('https://assignment-11-server-ten.vercel.app/reviews', {
       method: "POST",
       headers: {
         "content-type":"application/json"
