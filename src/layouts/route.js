@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddService from "../pages/AddService/AddService";
 import AllServices from "../pages/AllServices/AllServices";
 import Blog from "../pages/Blog/Blog";
 import Details from "../pages/Details/Details";
@@ -6,6 +7,7 @@ import Login from "../pages/Form/Login";
 import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
 import MyReview from "../pages/MyReview/MyReview";
+import Update from "../pages/MyReview/Update/Update";
 import Main from "./Main";
 
 export const route = createBrowserRouter([
@@ -41,6 +43,14 @@ export const route = createBrowserRouter([
             {
                 path: '/myreviews',
                 element:<MyReview/>
+            },
+            {
+                path: '/update/:id',
+                element:<Update/>
+            },
+            {
+                path: 'addservice',
+                element:<AddService/>
             }
         ]
     }

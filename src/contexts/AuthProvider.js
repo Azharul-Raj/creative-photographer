@@ -10,6 +10,9 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    // refresh state here
+    const [dltRefresh, setDltRefresh] = useState(false);
+    const [updateRefresh, setUpdateRefresh] = useState(false);
     // email SignUp
     const emailSignUp = (email, password) => {
         setLoading(true);
@@ -48,7 +51,7 @@ const AuthProvider = ({ children }) => {
             .then(() => { })
         .catch(()=>{})
     }
-    const info={user,loading,emailSignUp,emailLogin,googleSignIn,update,logOut}
+    const info={user,loading,emailSignUp,emailLogin,googleSignIn,update,logOut, dltRefresh, setDltRefresh,updateRefresh, setUpdateRefresh}
     return (
         <authContext.Provider value={info}>
             {children}
