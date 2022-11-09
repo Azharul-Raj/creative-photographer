@@ -8,12 +8,14 @@ const MyReview = () => {
     useEffect(() => {
         fetch(`http://localhost:3001/reviews?email=${user?.email}`)
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => setAllComments(data))
         .catch(err=>console.log(err))
     },[user?.email])
     return (
         <div>
-            <Review/>
+            {
+                allComments.map(item=><Review key={item._id} item={item}/>)
+            }
         </div>
     );
 };
