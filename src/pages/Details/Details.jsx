@@ -38,6 +38,7 @@ console.log(service_id);
     e.preventDefault();
     const review = {
       name: user.displayName,
+      email: user.email,
       photo: user.photoURL,
       service_id: service_id,
       serviceName: title,
