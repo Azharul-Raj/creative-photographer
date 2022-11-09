@@ -1,16 +1,25 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, Navigate } from 'react-router-dom';
+import { authContext } from '../../../contexts/AuthProvider';
 
-const Review = ({ item,dltrefresh,setDltRefresh }) => {
-    // const { dltrefresh, setDltRefresh } = useContext(authContext);
+const Review = ({ item, dltrefresh, setDltRefresh }) => {
+    const { logOut } = useContext(authContext);
     const { _id, name, comment, photo, time } = item;
     // comment delete function 
     const handleDelete = () => {
         fetch(`http://localhost:3001/reviews/${_id}`, {
-            method:"DELETE"
+            method: "DELETE",
+            headers: {
+                authorization:`Bearer ${localStorage.getItem('token')}`
+            }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut
+                }
+                return res.json()
+            })
             .then(data => {
                 console.log(data)
                 setDltRefresh(!dltrefresh)
@@ -31,7 +40,7 @@ const Review = ({ item,dltrefresh,setDltRefresh }) => {
                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                         className="mr-2 w-6 h-6 rounded-full"
                         src={photo}
-                        alt="Michael Gough" />{ name}</p>
+                        alt="img" />{ name}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
                         title="February 8th, 2022">{time}</time></p>
             </div>

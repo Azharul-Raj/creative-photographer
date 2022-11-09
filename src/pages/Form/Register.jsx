@@ -2,9 +2,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import googleLogo from "../../assets/icons8-google.svg";
 import { authContext } from "../../contexts/AuthProvider";
+import {useNavigate} from 'react-router-dom'
+import useTitle from "../../hooks/useTitle";
+import getToken from "../../utilities/utilities";
 
 const Register = () => {
+  useTitle('SignUp')
   const { emailSignUp, googleSignIn, update } = useContext(authContext);
+  const navigate=useNavigate()
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +20,11 @@ const Register = () => {
     const password = form.password.value;
     emailSignUp(email, password)
       .then(result => {
-        const profile = result.user;
         update(name, image);
+        const profile = result.user;
+        getToken(profile);
+        console.log(profile)
+        navigate('/')
       })
     .catch(err=>console.error(err))
   }
@@ -25,6 +33,7 @@ const Register = () => {
     googleSignIn()
       .then(result => {
         const profile = result.user;
+        getToken(profile)
       })
     .catch(err=>console.log(err))
   }
@@ -96,7 +105,7 @@ const Register = () => {
                   <input
                     id=""
                     name="password"
-                    type="Your password"
+                    type="password"
                     placeholder="Your password"
                     className="w-full bg-transparent pb-3  border-b border-gray-300 dark:placeholder-gray-300 dark:border-gray-600 outline-none  invalid:border-red-400 transition"
                   />

@@ -6,6 +6,7 @@ import { authContext } from '../../contexts/AuthProvider';
 const Protected = ({ children }) => {
     const { user, loading } = useContext(authContext);
     const location = useLocation();
+    console.log(location);
     if (loading) {
         return <div className='flex items-center justify-center'>
         <div role="status">

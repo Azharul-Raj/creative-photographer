@@ -8,6 +8,7 @@ import Register from "../pages/Form/Register";
 import HomePage from "../pages/HomePage/HomePage";
 import MyReview from "../pages/MyReview/MyReview";
 import Update from "../pages/MyReview/Update/Update";
+import Protected from "../pages/Protected/Protected"
 import Main from "./Main";
 
 export const route = createBrowserRouter([
@@ -42,7 +43,7 @@ export const route = createBrowserRouter([
             },
             {
                 path: '/myreviews',
-                element:<MyReview/>
+                element:<Protected><MyReview/></Protected>
             },
             {
                 path: '/update/:id',
@@ -50,7 +51,7 @@ export const route = createBrowserRouter([
             },
             {
                 path: 'addservice',
-                element:<AddService/>
+                element:<Protected><AddService/></Protected>
             }
         ]
     }
