@@ -12,7 +12,6 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   let from = location.state?.from?.pathname || "/";
-  console.log(from);
   // const from=location.state?.from?.pathname || '/'
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +78,7 @@ const Login = () => {
               <div>
                 <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 dark:before:bg-sky-800 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
                   <input
-                    id=""
+                    id="email"
                     type="email"
                     name="email"
                     placeholder="Your email or user name"
@@ -91,7 +90,7 @@ const Login = () => {
               <div className="flex flex-col items-end">
                 <div className="w-full relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 dark:before:bg-sky-800 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
                   <input
-                    id=""
+                    id="password"
                     type="password"
                     name="password"
                     placeholder="Your password"

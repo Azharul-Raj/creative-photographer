@@ -4,7 +4,16 @@ import camera from '../../../assets/camera.png';
 
 const Banner = () => {
     return (
-        <div className=' lg:mb-10'>
+        <div 
+        data-aos="fade-up"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+        data-aos-once="false"
+            data-aos-anchor-placement="top-center"
+            className=' lg:mb-10'>
             <div className="lg:min-h-screen flex">
             <div className="container m-auto px-6 py-40 md:px-12 lg:py-0 lg:px-7">
                 <div className="flex items-center flex-wrap gap-12 lg:gap-0">
@@ -32,7 +41,8 @@ const Banner = () => {
                         </div>
                     </div>
 
-                    <div className="hidden relative md:block lg:w-7/12">
+                        <div
+                            className="hidden relative md:block lg:w-7/12">
                         <div aria-hidden="true" className="absolute inset-0 m-auto w-[30rem] h-[30rem] rounded-full bg-yellow-200">
 
                         </div>

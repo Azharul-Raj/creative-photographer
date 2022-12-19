@@ -11,7 +11,8 @@ const Services = () => {
       .catch((err) => console.error(err));
   }, []);
   return (
-    <div className="">
+    <div data-aos="fade-up"
+    data-aos-duration="3000" className="">
       <div className="flex flex-col justify-center items-center ">
         <h2 className="text-4xl text-white text-center font-bold">
           My Services
