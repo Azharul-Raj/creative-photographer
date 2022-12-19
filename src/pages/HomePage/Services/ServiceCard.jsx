@@ -15,7 +15,11 @@ const ServiceCard = ({ service }) => {
       </PhotoView>
     </PhotoProvider>
     </Link>
-    <div className="p-5">
+            <div
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+                className="p-5">
         <Link href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
         </Link>

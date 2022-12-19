@@ -80,7 +80,16 @@ const BottomSection = () => {
       </div>
       {/* team section  */}
 
-      <div className="py-20">
+      <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      // data-aos-mirror="true"
+      data-aos-once="false"
+          data-aos-anchor-placement="top-center"
+        className="py-20">
         <div className="container mx-auto px-6 text-center md:px-12">
           <div className="mb-16">
             <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 dark:text-white md:text-4xl">
