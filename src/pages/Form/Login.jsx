@@ -39,7 +39,15 @@ const Login = () => {
     .catch(err=>console.log(err))
   }
   return (
-    <div className="m-auto xl:container px-12 sm:px-0 mx-auto">
+    <div
+    data-aos="fade-right"
+    data-aos-offset="200"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center" className="m-auto xl:container px-12 sm:px-0 mx-auto">
       <div className="mx-auto h-full sm:w-max">
         <div className="m-auto  py-12">
           <div className="mt-12 rounded-3xl border bg-gray-50 dark:border-gray-700 dark:bg-gray-800 -mx-6 sm:-mx-10 p-8 sm:p-10">
