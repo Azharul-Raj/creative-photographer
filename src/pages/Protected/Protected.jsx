@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthProvider';
 
 
 const Protected = ({ children }) => {
     const { user, loading } = useContext(authContext);
     const location = useLocation();
-    console.log(location);
     if (loading) {
         return <div className='flex items-center justify-center'>
         <div role="status">
@@ -60,7 +59,6 @@ const Protected = ({ children }) => {
             </div>
             </div>
     }
-    console.log(location);
     if (user) {
         return children;
     }

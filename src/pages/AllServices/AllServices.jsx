@@ -11,7 +11,6 @@ const AllServices = () => {
             .then(data => setServices(data))
         .catch(err=>console.error(err))
     }, [])
-    console.log(services.length);
     return (
     <>
         {services.length?<div className='grid grid-cols-1 lg:grid-cols-3 gap-5 mx-10 my-20'>            
